@@ -62,7 +62,6 @@ for (const i of emailPasswordPairs) {
     
   }, []);
   
-
   const getDoctors = async () => {
     try {
       const response = await fetch("http://localhost:4000/get_docs");
@@ -86,18 +85,18 @@ for (const i of emailPasswordPairs) {
 
     return (
         <div className="LogIn">
-            <div className="mt-3 flex h-screen w-full bg-green-900">
+            <div className="flex w-full h-screen mt-3 bg-green-900">
                 <div className="w-1/2 max-sm:hidden">
                     <img
                         src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80&w=1780&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                        className="h-full w-full"
+                        className="w-full h-full"
                     />
                 </div>
 
-                <div className="flex w-1/2 flex-col bg-white max-sm:w-full">
+                <div className="flex flex-col w-1/2 bg-white max-sm:w-full">
                     <div className="mx-auto my-auto h-3/4 w-3/4 rounded-xl border-2 border-blue-500 bg-white max-md2:h-5/6 max-md2:w-3/4 max-md:w-[90%] max-sm:w-3/4 ">
                         <div className="flex border-b-2 border-blue-500">
-                            <label className="mb-5 ml-7 mt-5 text-3xl font-bold text-blue-700 max-sixthsmall:text-xl">
+                            <label className="mt-5 mb-5 text-3xl font-bold text-blue-700 ml-7 max-sixthsmall:text-xl">
                                 Not A Doctor?
                             </label>
                         </div>
@@ -111,7 +110,7 @@ for (const i of emailPasswordPairs) {
                                 placeholder="Enter Your Email"
                                 onChange={(e) => setDocEmail(e.target.value)}
                             />
-                            <p className='text-red-700'>{docEmail}</p>
+                            {/* <p className='text-red-700'>{docEmail}</p> */}
                         </div>
                         <div className="relative mt-11">
                             <label className="max-sm1:ml-[-180px] absolute -mt-2 ml-[60px] bg-white text-sm font-semibold text-blue-400 max-xl:ml-[20px] max-lg:ml-[20px] max-md1:ml-[20px] max-md2:ml-[20px] max-md:ml-[20px] max-sm:ml-[20px]  max-xs:ml-[20px] max-extrasmall:ml-[20px]">
@@ -123,9 +122,9 @@ for (const i of emailPasswordPairs) {
                                 className="ml-auto mr-auto mt-4 block w-5/6 rounded-md border border-[#e0e0e0] bg-white px-6 py-3 text-base font-medium text-blue-400 outline-none placeholder:text-xs placeholder:text-blue-400 focus:border-[#6A64F1] focus:shadow-md"
                                 onChange={(e) => setDocPassword(e.target.value)}
                             />
-                            <p className='text-red-700'>{docPassword}</p>
+                            {/* <p className='text-red-700'>{docPassword}</p> */}
                             <button
-                                className="absolute inset-y-0 right-0 mb-3 mr-10 flex items-center px-4 text-gray-600"
+                                className="absolute inset-y-0 right-0 flex items-center px-4 mb-3 mr-10 text-gray-600"
                                 onClick={togglePasswordVisibility}
                             >
                                 {isPasswordVisible ? (
@@ -135,7 +134,7 @@ for (const i of emailPasswordPairs) {
                                 )}
                             </button>
                         </div>
-                        <div className="mt-11 flex w-full flex-row px-6 max-lg:px-1 max-md1:px-1 max-fourthsmall:mt-7">
+                        <div className="flex flex-row w-full px-6 mt-11 max-lg:px-1 max-md1:px-1 max-fourthsmall:mt-7">
                             <input
                                 id="disabled-radio-1"
                                 type="checkbox"
@@ -149,7 +148,7 @@ for (const i of emailPasswordPairs) {
                             >
                                 Keep Me Logged In
                             </label>
-                            <label className="max-sm1:ml-28 ml-32 cursor-pointer text-sm font-normal text-blue-400 underline max-xl:ml-20 max-xl:text-xs max-lg:ml-16 max-sm:ml-48 max-xs:ml-20 max-xs:text-xxs max-extrasmall:ml-14">
+                            <label className="ml-32 text-sm font-normal text-blue-400 underline cursor-pointer max-sm1:ml-28 max-xl:ml-20 max-xl:text-xs max-lg:ml-16 max-sm:ml-48 max-xs:ml-20 max-xs:text-xxs max-extrasmall:ml-14">
                                 Forgot Password?
                             </label>
                         </div>
@@ -159,10 +158,10 @@ for (const i of emailPasswordPairs) {
                             Log In
                         </button>
                         {/* </Link> */}
-                        <div className="mt-3 pt-4 text-center">
+                        <div className="pt-4 mt-3 text-center">
                             <label className="text-sm font-normal text-blue-400">
                                 Don't Have An Account?{' '}
-                                <span className="cursor-pointer text-sm font-bold text-blue-400 underline">
+                                <span className="text-sm font-bold text-blue-400 underline cursor-pointer">
                                  <a href="/DocRegister"> Sign Up </a>
                                 </span>
                             </label>

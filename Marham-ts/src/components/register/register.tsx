@@ -79,8 +79,8 @@ export default function Register() {
   const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
 
-    console.log(user_reg_gender)
-    console.log(storedSelectedCode)
+    // console.log(user_reg_gender)
+    // console.log(storedSelectedCode)
     await Post_User_Registration_info_into_db();
 
    
@@ -234,7 +234,7 @@ export default function Register() {
           </label>
         </div>
       </div>
-      <p>{user_reg_gender}</p>
+   {/* <p>{user_reg_gender}</p> */}
     </div>
 
 
