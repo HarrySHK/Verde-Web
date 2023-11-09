@@ -1,6 +1,32 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+
+import { UserAuth } from '../../context/AuthContext'
 
 const Login = () => {
+
+    const { googleSignIn, facebookSignIn, user } = UserAuth()
+    const navigate = useNavigate()
+    const handleGoogleSignIn = async () => {
+      try {
+        await googleSignIn()
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    const handleFacebookSignIn = async () => {
+      try {
+        await facebookSignIn()
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    useEffect(() => {
+      if (user != null) {
+        navigate('/account')
+      }
+    }, [user])
+
     return (
         <div className="LogIn">
             <div className='flex w-full h-screen mt-3 '>
@@ -24,7 +50,7 @@ const Login = () => {
                         </div>
                         <button className='bg-blue-900 mt-5 w-full mr-auto ml-auto border-2 border-blue-800 font-bold text-white-500 px-16 py-1.5 rounded-full text-bold text-white tracking-widest'>Log In</button>
                         <div className="w-full h-0 mt-6 ml-auto mr-auto text-black divider divider-horizontal text-md">or</div>
-                        <button type="button" className="btn mt-4 w-full gap-4 text-center rounded-full px-10 bg-[#ca493d] ">
+                        <button onClick={handleGoogleSignIn} type="button" className="btn mt-4 w-full gap-4 text-center rounded-full px-10 bg-[#ca493d] ">
                             <svg stroke="currentColor" fill="currentColor" stroke-width="0" version="1.1" viewBox="0 0 48 48" enableBackground="new 0 0 48 48" className="w-5 h-5" xmlns="http://www.w3.org/2000/svg">
                                 <path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"></path>
                                 <path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657        C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"></path>
@@ -38,7 +64,7 @@ const Login = () => {
                             <span>Sign up with google</span>
                         </button>
                         <div>
-                            <a href="#" className="w-full gap-3 mt-4 text-center text-white transition-colors duration-200 transform bg-blue-600 border rounded-full btn px-9 ">
+                            <a onClick={handleFacebookSignIn} href="#" className="w-full gap-3 mt-4 text-center text-white transition-colors duration-200 transform bg-blue-600 border rounded-full btn px-9 ">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" className="bi bi-facebook" viewBox="0 0 16 16">
                                     <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z" />
                                 </svg>

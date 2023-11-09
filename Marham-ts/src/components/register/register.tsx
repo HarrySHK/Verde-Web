@@ -8,12 +8,35 @@ import { faFacebook } from "@fortawesome/free-brands-svg-icons";
 import { faGoogle } from "@fortawesome/free-brands-svg-icons";
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import { UserAuth } from '../../context/AuthContext'
 
 library.add(faEye, faEyeSlash)
 
 export default function Register() {
 
-  const navigate = useNavigate();
+  const { googleSignIn, facebookSignIn, user } = UserAuth()
+  const navigate = useNavigate()
+  const handleGoogleSignIn : any = async () => {
+    try {
+      await googleSignIn()
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  const handleFacebookSignIn : any = async () => {
+    try {
+      await facebookSignIn()
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  useEffect(() => {
+    if (user != null) {
+      navigate('/account')
+    }
+  }, [user])
+
+  const navigate1 = useNavigate();
 
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [password, setPassword] = useState('');
@@ -84,7 +107,7 @@ export default function Register() {
     await Post_User_Registration_info_into_db();
 
    
-    navigate('/login');
+    navigate1('/login');
   };
 
 
@@ -301,10 +324,10 @@ export default function Register() {
       </div>
 
 
-      <div className="flex flex-row w-full space-x-5 ">
+      {/* <div className="flex flex-row w-full space-x-5 ">
       
-      <button className="w-3/5 py-3 ml-auto mr-auto text-sm font-semibold text-white bg-orange-700 rounded-full max-sm:py-3 max-md:py-2"> <FontAwesomeIcon icon={faGoogle} className="mr-2" />Login through Google</button>
-      <button className="w-3/5 py-3 ml-auto mr-auto text-sm font-semibold text-white bg-blue-800 rounded-full max-sm:py-3 max-md:py-2"> <FontAwesomeIcon icon={faFacebook} className="mr-2" />Login through Facebook</button>
+      <button onClick={handleGoogleSignIn} className="w-3/5 py-3 ml-auto mr-auto text-sm font-semibold text-white bg-orange-700 rounded-full max-sm:py-3 max-md:py-2"> <FontAwesomeIcon icon={faGoogle} className="mr-2" />Login through Google</button>
+      <button onClick={handleFacebookSignIn} className="w-3/5 py-3 ml-auto mr-auto text-sm font-semibold text-white bg-blue-800 rounded-full max-sm:py-3 max-md:py-2"> <FontAwesomeIcon icon={faFacebook} className="mr-2" />Login through Facebook</button>
       
       </div>
 
@@ -314,10 +337,23 @@ export default function Register() {
       <div className="flex flex-row w-full space-x-5 ">
       
      <p className="ml-auto mr-auto font-semibold text-blue-400 max-md:pt-2">Already a Member<Link to="/login"  className="ml-2 text-blue-400 underline cursor-pointer text-semibold hover:text-blue-950">Click here</Link></p>
-      </div>
+      </div> */}
 
       
     </form>
+    <div className="flex flex-row w-full space-x-5 ">
+      
+      <button onClick={handleGoogleSignIn} className="w-3/5 py-3 ml-auto mr-auto text-sm font-semibold text-white bg-orange-700 rounded-full max-sm:py-3 max-md:py-2"> <FontAwesomeIcon icon={faGoogle} className="mr-2" />Login through Google</button>
+      <button onClick={handleFacebookSignIn} className="w-3/5 py-3 ml-auto mr-auto text-sm font-semibold text-white bg-blue-800 rounded-full max-sm:py-3 max-md:py-2"> <FontAwesomeIcon icon={faFacebook} className="mr-2" />Login through Facebook</button>
+      
+      </div>
+
+      
+      
+      <div className="flex flex-row w-full space-x-5 mt-2 ">
+      
+     <p className="ml-auto mr-auto font-semibold text-blue-400 max-md:pt-2">Already a Member<Link to="/login"  className="ml-2 text-blue-400 underline cursor-pointer text-semibold hover:text-blue-950">Click here</Link></p>
+      </div>
   </div>
 </div>
 
